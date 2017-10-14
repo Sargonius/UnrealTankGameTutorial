@@ -33,15 +33,18 @@ public:
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
-	UTankBarrel* GetBarrel();
+	UTankBarrel* Barrel = nullptr;
+
 
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
-		EFiringState FiringState = EFiringState::Reloading;
+		EFiringState FiringState = EFiringState::Aiming;
+
+	
 
 private:
-	UTankBarrel* Barrel = nullptr;
+	
 	UTankTurret* Turret = nullptr;
 	
 };

@@ -7,6 +7,7 @@
 #include "TankPlayerController.generated.h"
 
 class ATank;
+class UTankAimingComponent;
 
 /**
  * 
@@ -29,6 +30,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	float CrossHairYLocation = 0.3333;
+
+protected:
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 	
 private:
 	// Start the tank moving the barrel
