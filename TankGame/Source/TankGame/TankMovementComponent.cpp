@@ -13,15 +13,19 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
-	if (!ensure(LeftTrack) && !ensure(RightTrack)) { return; }
+	if (!ensure(LeftTrack) && !ensure(RightTrack)) { 
+		//UE_LOG(LogTemp, Warning, TEXT("left %s right %s"), IsValid(LeftTrack) ? "1" : "0", IsValid(RightTrack) ? "1" : "0");
+		return; }
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
 }
 
 void UTankMovementComponent::Initialise(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)
 {	
+	UE_LOG(LogTemp, Warning, TEXT("left %s right %s"), IsValid(LeftTrack) ? "1" : "0", IsValid(RightTrack) ? "1" : "0");
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
+	UE_LOG(LogTemp, Warning, TEXT("left %s right %s"), IsValid(LeftTrack) ? "1" : "0", IsValid(RightTrack) ? "1" : "0");
 }
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)

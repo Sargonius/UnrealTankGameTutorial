@@ -23,7 +23,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
 
 protected:
 
@@ -37,6 +37,8 @@ private:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
@@ -46,9 +48,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 		float ReloadTimeInSeconds = 3;
 
+	UTankBarrel* Barrel = nullptr;
 	double LastFireTime = 0;
 
-	UTankBarrel* Barrel = nullptr;
 	
 	
 };
