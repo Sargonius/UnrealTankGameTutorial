@@ -25,6 +25,8 @@ class TANKGAME_API UTankAimingComponent : public UActorComponent
 
 public:	
 
+	UTankAimingComponent();
+
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
@@ -39,12 +41,12 @@ public:
 	void Fire();	
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ReloadTimeInSeconds = 3;
+	float ReloadTimeInSeconds = 2;
 
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
-	EFiringState FiringState = EFiringState::Aiming;
+	EFiringState FiringState = EFiringState::Reloading;
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000;
@@ -55,4 +57,12 @@ private:
 	UTankBarrel* Barrel = nullptr;
 
 	double LastFireTime = 0;
+
+
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+	virtual void BeginPlay() override;
+
+	bool IsBarrelMoving();
+
+	FVector AimDirection;
 };
