@@ -6,7 +6,6 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
-class ATank;
 class UTankAimingComponent;
 
 /**
@@ -19,7 +18,6 @@ class TANKGAME_API ATankPlayerController : public APlayerController
 	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	ATank* GetControlledTank() const;
 
 	virtual void BeginPlay() override;
 
