@@ -27,5 +27,11 @@ void ATankAIController::Tick(float DeltaTime)
 	if (!ensure(AimingComponent)) { return; }
 
 	AimingComponent->AimAt(PlayerTank->GetActorLocation());
-	AimingComponent->Fire(); // Add frame limit
+
+	// if aiming or locked
+	if (AimingComponent->GetFiringState() == EFiringState::Locked)
+	{
+		AimingComponent->Fire(); // Add frame limit
+	}
+	
 }

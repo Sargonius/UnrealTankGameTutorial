@@ -43,6 +43,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTimeInSeconds = 2;
 
+	EFiringState GetFiringState() const;
+
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
