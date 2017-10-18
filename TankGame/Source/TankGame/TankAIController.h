@@ -18,8 +18,7 @@ public:
 	void BeginPlay() override;	
 	virtual void Tick(float DeltaTime) override;
 
-	void AimTowardsPlayer();
-
+	UPROPERTY(EditAnywhere, Category="Setup")
 	float AcceptanceRadius = 3000;
 	
 };
