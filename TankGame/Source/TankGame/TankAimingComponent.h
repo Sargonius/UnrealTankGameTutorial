@@ -41,11 +41,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void Fire();	
 
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	float ReloadTimeInSeconds = 2;
+	
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	int GetRoundsLeft() const;
+	int32 GetRoundsLeft() const;
 
 	EFiringState GetFiringState() const;
 
@@ -54,8 +53,14 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	EFiringState FiringState = EFiringState::Reloading;
 
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float ReloadTimeInSeconds = 2;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	int32 RoundsLeft = 3;
 	
 
 private:	
@@ -72,5 +77,5 @@ private:
 
 	FVector AimDirection;
 
-	int RoundsLeft = 3;
+
 };
