@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTankDelegate);
+
 UCLASS()
 class TANKGAME_API ATank : public APawn
 {
@@ -15,7 +17,28 @@ public:
 
 	virtual void BeginPlay() override;
 
+	// return health percent from 0 to 1
+	UFUNCTION(BlueprintPure, Category = "Health")
+		float GetHealthPercent() const;
+
+	FTankDelegate OnTankDestroyed;
+
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	int32 StartingHealth = 100;
+
+	UPROPERTY(VisibleAnywhere, Category = "Health")
+	int32 CurrentHealth;
+
 private:
-	// Sets default values for this pawn's properties
+
 	ATank();
+
+	virtual float TakeDamage
+	(
+		float DamageAmount,
+		struct FDamageEvent const & DamageEvent,
+		class AController * EventInstigator,
+		AActor * DamageCauser
+	) override;
 };

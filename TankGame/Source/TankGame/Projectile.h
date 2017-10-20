@@ -36,6 +36,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 	URadialForceComponent* ExplosionForce = nullptr;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float ProjectileDamage = 10.f;
+
 public:	
 	void LaunchProjectile(float Speed);
 

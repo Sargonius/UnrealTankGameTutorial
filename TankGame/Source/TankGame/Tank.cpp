@@ -13,5 +13,34 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
+	CurrentHealth = StartingHealth;
 }
 
+
+float ATank::TakeDamage(
+	float DamageAmount,
+	struct FDamageEvent const & DamageEvent,
+	class AController* EventInstigator,
+	AActor* DamageCauser)
+{
+	if (DamageAmount > 0)
+	{
+		CurrentHealth -= DamageAmount;
+	}
+
+	if (CurrentHealth <= 0)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("DESTROYED!!!"));
+		OnTankDestroyed.Broadcast();
+	}
+
+	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
+	auto DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
+
+	return DamageToApply;
+}
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
+}

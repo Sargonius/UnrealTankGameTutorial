@@ -44,5 +44,10 @@ private:
 	float LineTraceRange = 1000000.0f;
 	bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+	void OnTankDeath();
+
 
 };
